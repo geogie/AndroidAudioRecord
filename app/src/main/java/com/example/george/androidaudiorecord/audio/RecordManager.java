@@ -1,20 +1,19 @@
 package com.example.george.androidaudiorecord.audio;
 
-import android.os.Environment;
+import android.annotation.SuppressLint;
+import android.app.Application;
 
-import com.blankj.utilcode.util.FileUtils;
-import com.blankj.utilcode.util.TimeUtils;
-
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+import com.example.george.androidaudiorecord.utils.Logger;
 
 /**
- * Created by George.ren on 2018/8/10.
+ * Created by George.ren on 2018/8/12.
  * Describe:
  */
 public class RecordManager {
     private static final String TAG = RecordManager.class.getSimpleName();
+    @SuppressLint("StaticFieldLeak")
     private volatile static RecordManager instance;
+    private Application context;
 
     private RecordManager() {
     }
@@ -30,51 +29,79 @@ public class RecordManager {
         return instance;
     }
 
+    /**
+     * 初始化
+     *
+     * @param application Application
+     * @param showLog     是否开启日志
+     */
+    public void init(Application application, boolean showLog) {
+        this.context = application;
+        Logger.IsDebug = showLog;
+    }
 
     public void start() {
-        RecordService.startRecording(getFilePath());
+        if (context == null) {
+            Logger.e(TAG, "未进行初始化");
+            return;
+        }
+        Logger.i(TAG, "start...");
+        RecordService.startRecording(context);
     }
 
     public void stop() {
-        RecordService.stopRecording();
+        if (context == null) {
+            return;
+        }
+        RecordService.stopRecording(context);
+    }
+
+    public void resume() {
+        if (context == null) {
+            return;
+        }
+        RecordService.resumeRecording(context);
+    }
+
+    public void pasue() {
+        if (context == null) {
+            return;
+        }
+        RecordService.pauseRecording(context);
     }
 
     /**
-     * 根据当前的时间生成相应的文件名
-     * 实例 record_20160101_13_15_12
+     * 录音状态监听回调
      */
-    private String getFilePath() {
-        String fileDir = String.format(Locale.getDefault(), "%s/Record/", Environment.getExternalStorageDirectory().getAbsolutePath());
-        if (!FileUtils.createOrExistsDir(fileDir)) {
-            Logger.w(TAG, "文件夹创建失败：%s", fileDir);
-            return null;
-        }
-        String fileName = String.format(Locale.getDefault(), "record_%s", TimeUtils.getNowString(new SimpleDateFormat("yyyyMMdd_HH_mm_ss", Locale.SIMPLIFIED_CHINESE)));
-        return String.format(Locale.getDefault(), "%s%s.wav", fileDir, fileName);
+    public void setRecordStateListener(RecordStateListener listener) {
+        RecordService.setRecordStateListener(listener);
     }
 
-
-    public enum RecordFormat {
-        /**
-         * mp3格式
-         */
-        MP3(".mp3"),
-        /**
-         * wav格式
-         */
-        WAV(".wav"),
-        /**
-         * pcm格式
-         */
-        PCM(".pcm");
-
-        private String extension;
-
-        RecordFormat(String extension) {
-            this.extension = extension;
-        }
+    /**
+     * 录音数据监听回调
+     */
+    public void setRecordDataListener(RecordDataListener listener) {
+        RecordService.setRecordDataListener(listener);
     }
 
+    /**
+     * 录音音量监听回调
+     */
+    public void setRecordSoundSizeListener(RecordSoundSizeListener listener) {
+        RecordService.setRecordSoundSizeListener(listener);
+    }
 
+    public boolean changeFormat(RecordConfig.RecordFormat recordFormat) {
+        return RecordService.changeFormat(recordFormat);
+    }
+
+    /**
+     * 获取当前的录音状态
+     *
+     * @return 状态
+     */
+    public RecordHelper.RecordState getState() {
+        return RecordService.getState();
+    }
 
 }

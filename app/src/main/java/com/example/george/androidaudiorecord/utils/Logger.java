@@ -1,4 +1,4 @@
-package com.example.george.androidaudiorecord.audio;
+package com.example.george.androidaudiorecord.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -10,10 +10,6 @@ import android.util.Log;
 import java.io.File;
 import java.util.Locale;
 
-/**
- * Created by George.ren on 2018/8/10.
- * Describe:
- */
 public class Logger {
     private static final String PRE = "^_^";
     private static final String TAG = Logger.class.getSimpleName();
@@ -32,11 +28,11 @@ public class Logger {
         V, D, I, W, E
     }
 
-    //    private static boolean LOGV = false;
-    //    private static boolean LOGD = false;
-    //    private static boolean LOGI = false;
-    //    private static boolean LOGW = false;
-    //    private static boolean LOGE = false;
+//    private static boolean LOGV = false;
+//    private static boolean LOGD = false;
+//    private static boolean LOGI = false;
+//    private static boolean LOGW = false;
+//    private static boolean LOGE = false;
 
     public static void v(String tag, String format, Object... args) {
         if (LOGV) {

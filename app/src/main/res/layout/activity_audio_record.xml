@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvState"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onStart"
-        android:text="开始录音"
-        android:textSize="26sp"
-        tools:ignore="OnClick" />
+        android:text="状态：%s" />
 
     <TextView
+        android:id="@+id/tvSoundSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="声音大小：%s" />
+
+    <Button
+        android:id="@+id/btRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:onClick="onStop"
-        android:text="停止录音"
-        android:textSize="26sp"
-        tools:ignore="OnClick" />
+        android:text="录音" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停止" />
+
+</LinearLayout>
