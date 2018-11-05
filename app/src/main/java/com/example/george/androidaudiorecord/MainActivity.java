@@ -6,11 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import com.example.george.androidaudiorecord.myRecord.record.MyAudioRecorder;
-import com.example.george.androidaudiorecord.myRecord.record.StreamAudioRecorder;
+import com.example.george.androidaudiorecord.myRecord.record.StreamAudioPlayer;
 
 import java.io.File;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -74,32 +72,39 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        StreamAudioRecorder.getInstance().start(getCachePath("xs") + "/xs_1" + ".wav", new StreamAudioRecorder.AudioStartCompeletedCallback() {
+//        StreamAudioRecorder.getInstance().start(getCachePath("xs") + "/xs_1" + ".wav", new StreamAudioRecorder.AudioStartCompeletedCallback() {
+//            @Override
+//            public void onAudioStartCompeleted() {
+//                Log.d(TAG,"onAudioStartCompeleted");
+//            }
+//        }, new StreamAudioRecorder.AudioStopCompletedCallback() {
+//            @Override
+//            public void onAudioStopCompeleted() {
+//                Log.d(TAG,"onAudioStopCompeleted");
+//            }
+//        }, new StreamAudioRecorder.AudioDataCallback() {
+//            @Override
+//            public void onAudioData(byte[] data, int size, AtomicBoolean recording, int flag) {
+//                Log.d(TAG,"onAudioData-data:"+data+" size:"+size+" recording:"+recording+" flag:"+flag);
+//            }
+//
+//            @Override
+//            public void onError(int code) {
+//                Log.d(TAG,"onError-code:"+code);
+//
+//            }
+//        });
+        StreamAudioPlayer.getInstance().play(getCachePath("xs") + "/xs_1" + ".wav", new StreamAudioPlayer.AudioPlayCompeletedCallback() {
             @Override
-            public void onAudioStartCompeleted() {
-                Log.d(TAG,"onAudioStartCompeleted");
-            }
-        }, new StreamAudioRecorder.AudioStopCompletedCallback() {
-            @Override
-            public void onAudioStopCompeleted() {
-                Log.d(TAG,"onAudioStopCompeleted");
-            }
-        }, new StreamAudioRecorder.AudioDataCallback() {
-            @Override
-            public void onAudioData(byte[] data, int size, AtomicBoolean recording, int flag) {
-                Log.d(TAG,"onAudioData-data:"+data+" size:"+size+" recording:"+recording+" flag:"+flag);
-            }
-
-            @Override
-            public void onError(int code) {
-                Log.d(TAG,"onError-code:"+code);
-
+            public void onAudioPlayCompeleted() {
+                Log.d(TAG, "onAudioPlayCompeleted");
             }
         });
     }
 
     public void onStop(View view) {
 //        MyAudioRecorder.getInstance().stop();
-        StreamAudioRecorder.getInstance().stop();
+//        StreamAudioRecorder.getInstance().stop();
+        StreamAudioPlayer.getInstance().stopPlay();
     }
 }
