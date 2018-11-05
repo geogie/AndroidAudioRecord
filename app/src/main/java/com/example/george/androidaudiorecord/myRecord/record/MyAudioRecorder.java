@@ -1,4 +1,4 @@
-package com.example.george.androidaudiorecord.record;
+package com.example.george.androidaudiorecord.myRecord.record;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -236,7 +236,7 @@ public class MyAudioRecorder {
                                 continue;
                             }
                             if (ret == AudioRecord.ERROR_DEAD_OBJECT) {
-                                this.mAudioRecord = new AudioRecord(1, this.sampleRate, this.channelConfig, this.audioFormat, this.bufferSizeInBytes);
+                                this.mAudioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, this.sampleRate, this.channelConfig, this.audioFormat, this.bufferSizeInBytes);
                             }
                             this.onError(ret);
                             break;
@@ -322,6 +322,7 @@ public class MyAudioRecorder {
 
     private static final class Instance {
         private static final MyAudioRecorder INSTANCE = new MyAudioRecorder();
+
         private Instance() {
         }
     }

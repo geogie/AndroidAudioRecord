@@ -1,4 +1,4 @@
-package com.example.george.androidaudiorecord.record;
+package com.example.george.androidaudiorecord.myRecord.record;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
