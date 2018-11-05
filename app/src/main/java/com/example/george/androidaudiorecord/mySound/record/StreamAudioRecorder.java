@@ -1,4 +1,4 @@
-package com.example.george.androidaudiorecord.myRecord.record;
+package com.example.george.androidaudiorecord.mySound.record;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -8,7 +8,7 @@ import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.george.androidaudiorecord.myRecord.constraint.AudioTypeEnum;
+import com.example.george.androidaudiorecord.mySound.constraint.AudioTypeEnum;
 
 import java.io.File;
 import java.io.IOException;

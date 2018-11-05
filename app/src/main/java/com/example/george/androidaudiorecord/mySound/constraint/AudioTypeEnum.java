@@ -1,4 +1,4 @@
-package com.example.george.androidaudiorecord.myRecord.constraint;
+package com.example.george.androidaudiorecord.mySound.constraint;
 
 /**
  * Created by George.ren on 2018/11/5.

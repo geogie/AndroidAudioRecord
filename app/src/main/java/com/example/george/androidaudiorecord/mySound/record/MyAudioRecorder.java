@@ -1,4 +1,4 @@
-package com.example.george.androidaudiorecord.myRecord.record;
+package com.example.george.androidaudiorecord.mySound.record;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;

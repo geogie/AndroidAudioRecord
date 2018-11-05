@@ -3,12 +3,12 @@ package com.example.george.androidaudiorecord;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
-import com.example.george.androidaudiorecord.myRecord.record.StreamAudioPlayer;
+import com.example.george.androidaudiorecord.mySound.myMp3.MP3Recorder;
 
 import java.io.File;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -94,17 +94,26 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
-        StreamAudioPlayer.getInstance().play(getCachePath("xs") + "/xs_1" + ".wav", new StreamAudioPlayer.AudioPlayCompeletedCallback() {
-            @Override
-            public void onAudioPlayCompeleted() {
-                Log.d(TAG, "onAudioPlayCompeleted");
-            }
-        });
+//        StreamAudioPlayer.getInstance().play(getCachePath("xs") + "/xs_1" + ".wav", new StreamAudioPlayer.AudioPlayCompeletedCallback() {
+//            @Override
+//            public void onAudioPlayCompeleted() {
+//                Log.d(TAG, "onAudioPlayCompeleted");
+//            }
+//        });
+        try {
+            mp3Recorder.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    File file = new File(getCachePath("xs") + "/xs_1" + ".mp3");
+    MP3Recorder mp3Recorder = new MP3Recorder(file);
 
     public void onStop(View view) {
 //        MyAudioRecorder.getInstance().stop();
 //        StreamAudioRecorder.getInstance().stop();
-        StreamAudioPlayer.getInstance().stopPlay();
+//        StreamAudioPlayer.getInstance().stopPlay();
+        mp3Recorder.stop();
     }
 }
