@@ -7,7 +7,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.czt.mp3recorder.util.LameUtil;
+import com.george.mylame.util.LameUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package com.czt.mp3recorder.util;
+package com.george.mylame.util;
 
 public class LameUtil {
 	static{
